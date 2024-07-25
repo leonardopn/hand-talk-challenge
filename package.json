@@ -1,0 +1,26 @@
+{
+	"name": "hand-talk-challenge",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "Leonardo Petta do Nascimento <leonardocps9@protonmail.com>",
+	"license": "MIT",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"prepare": "husky install",
+		"start:dev": "yarn workspaces foreach -p -i -A run start:dev",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"eslint": "^9",
+		"husky": "^9",
+		"lint-staged": "^15",
+		"prettier": "^3.2.5",
+		"ts-node": "^10.9.2",
+		"typescript": "^5"
+	},
+	"packageManager": "yarn@4.3.1"
+}
