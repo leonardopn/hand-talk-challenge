@@ -9,7 +9,7 @@
 		"packages/*"
 	],
 	"scripts": {
-		"prepare": "husky install",
+		"prepare": "husky",
 		"start:dev": "yarn workspaces foreach -p -i -A run start:dev",
 		"format": "prettier --write ."
 	},
