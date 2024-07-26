@@ -1,11 +1,5 @@
-import express from "express";
-const app = express();
-const port = 4000;
+import { AppModule } from "./module/App";
 
-app.get("/", (req, res) => {
-	res.send("Hello World!");
-});
+const app = new AppModule();
 
-app.listen(port, () => {
-	console.log(`API rodando na porta ${port}`);
-});
+app.start();
