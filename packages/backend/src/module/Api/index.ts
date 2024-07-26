@@ -1,13 +1,15 @@
-import { ExpressApi } from "../../implementations/ExpressApi";
-import { IApi } from "../../interfaces/IApi";
+import express, { Application } from "express";
+
 import { AnalyticsController } from "../Analytics/controller";
+import setupSwagger from "../../configs/Swagger";
 
 export class ApiModule {
-	private api: IApi;
+	private api: Application;
 
 	constructor() {
-		this.api = new ExpressApi();
+		this.api = express();
 
+		setupSwagger(this.api);
 		new AnalyticsController(this.api);
 	}
 

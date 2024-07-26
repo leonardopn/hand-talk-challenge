@@ -1,10 +1,10 @@
-import { IApi } from "../interfaces/IApi";
+import { Application } from "express";
 
 export abstract class Controller {
 	protected path: string;
-	protected api: IApi;
+	protected api: Application;
 
-	constructor(api: IApi, path: string) {
+	constructor(api: Application, path: string) {
 		this.api = api;
 		this.path = path;
 
