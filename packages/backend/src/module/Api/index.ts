@@ -10,6 +10,7 @@ export class ApiModule {
 		this.api = express();
 
 		setupSwagger(this.api);
+
 		new AnalyticsController(this.api);
 	}
 
