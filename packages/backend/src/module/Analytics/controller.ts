@@ -1,7 +1,7 @@
 import { Application, Request, Response, Router } from "express";
 import { Controller } from "../../classes/Controller";
-
 import { AnalyticsService } from "./service";
+import { COLLECT_ANALYTIC_DATA_DTO } from "./dto";
 
 export class AnalyticsController extends Controller {
 	private service: AnalyticsService;
@@ -64,10 +64,10 @@ export class AnalyticsController extends Controller {
 	 *               os:
 	 *                 type: string
 	 *                 example: windows
-	 *               origin:
+	 *               domain:
 	 *                 type: string
 	 *                 example: example.com
-	 *               theme_changes:
+	 *               themeChanges:
 	 *                 type: number
 	 *                 example: 5
 	 *     responses:
@@ -76,7 +76,11 @@ export class AnalyticsController extends Controller {
 	 *       500:
 	 *         description: Error collecting data
 	 */
-	private collect(req: Request, res: Response) {
-		res.send("TODO: implement analytics collect");
+	private async collect(req: Request, res: Response) {
+		const parsedBody = COLLECT_ANALYTIC_DATA_DTO.parse(req.body);
+
+		const createdData = await this.service.createOne(parsedBody);
+
+		res.status(201).send(createdData);
 	}
 }
