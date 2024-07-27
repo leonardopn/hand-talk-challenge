@@ -7,8 +7,33 @@ export class AnalyticsService extends Service {
 		super("analyticsData");
 	}
 
-	list() {
-		// TODO: implement analytics list
+	async listLastTwentyByDomain(domain: string) {
+		const result = await this.noSqlDb.getMany<keyof AnalyticsData, AnalyticsData>(
+			this.collection,
+			{
+				equals: {
+					field: "domain",
+					value: domain,
+				},
+			},
+			{
+				field: "createdAt",
+				direction: "desc",
+			},
+			{ direction: "end", value: 20 }
+		);
+
+		return result.map(
+			data =>
+				new AnalyticsData(
+					data.id,
+					data.os,
+					data.domain,
+					data.themeChanges,
+					data.device,
+					data.createdAt
+				)
+		);
 	}
 
 	async createOne(data: CollectAnalyticDataDto) {

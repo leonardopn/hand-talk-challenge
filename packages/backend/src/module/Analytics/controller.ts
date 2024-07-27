@@ -1,15 +1,18 @@
 import { Application, Request, Response, Router } from "express";
 import { Controller } from "../../classes/Controller";
 import { AnalyticsService } from "./service";
-import { COLLECT_ANALYTIC_DATA_DTO } from "./dto";
+import { COLLECT_ANALYTIC_DATA_DTO, LIST_ANALYTIC_DATA_DTO } from "./dto";
+import { DomainTokenService } from "../DomainToken/service";
 
 export class AnalyticsController extends Controller {
-	private service: AnalyticsService;
+	private analyticsService: AnalyticsService;
+	private domainTokenService: DomainTokenService;
 
 	constructor(api: Application) {
 		super(api, "/analytics");
 
-		this.service = new AnalyticsService();
+		this.analyticsService = new AnalyticsService();
+		this.domainTokenService = new DomainTokenService();
 	}
 
 	protected registerRoutes() {
@@ -41,8 +44,17 @@ export class AnalyticsController extends Controller {
 	 *         description: Error listing data
 	 */
 	private async list(req: Request, res: Response) {
-		const analytics = await this.service.list();
-		res.send(analytics);
+		const parsedQuery = LIST_ANALYTIC_DATA_DTO.parse(req.query);
+
+		const domainToken = await this.domainTokenService.getOneByToken(parsedQuery.token);
+
+		if (!domainToken) {
+			return res.status(404).send("No data found for the provided token");
+		}
+
+		const data = await this.analyticsService.listLastTwentyByDomain(domainToken.domain);
+
+		res.send(data);
 	}
 
 	/**
@@ -79,7 +91,7 @@ export class AnalyticsController extends Controller {
 	private async collect(req: Request, res: Response) {
 		const parsedBody = COLLECT_ANALYTIC_DATA_DTO.parse(req.body);
 
-		const createdData = await this.service.createOne(parsedBody);
+		const createdData = await this.analyticsService.createOne(parsedBody);
 
 		res.status(201).send(createdData);
 	}

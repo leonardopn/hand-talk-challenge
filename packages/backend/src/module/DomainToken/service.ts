@@ -20,6 +20,29 @@ export class DomainTokenService extends Service {
 		return domainToken;
 	}
 
+	async getOneByToken(token: string) {
+		const result = await this.noSqlDb.getMany<keyof DomainToken, DomainToken>(this.collection, {
+			equals: {
+				field: "token",
+				value: token,
+			},
+		});
+
+		if (result.length === 0) {
+			return null;
+		}
+
+		const foundDomainToken = result[0];
+
+		return new DomainToken(
+			foundDomainToken.id,
+			foundDomainToken.createdBy,
+			foundDomainToken.domain,
+			foundDomainToken.token,
+			foundDomainToken.createdAt
+		);
+	}
+
 	private signToken(payload?: { [key: string]: any }): string {
 		return jwt.sign(payload || {}, process.env.JWT_SECRET || "");
 	}
