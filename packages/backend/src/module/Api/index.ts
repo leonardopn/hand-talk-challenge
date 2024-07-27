@@ -4,18 +4,20 @@ import setupSwagger from "../../configs/Swagger";
 import { DomainTokenController } from "../DomainToken/controller";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
 import { BodyValidatorErrorHandler } from "./middlewares/BodyValidatorErrorHandler";
+import helmet from "helmet";
 
 export class ApiModule {
 	private api: Application;
 
 	constructor() {
 		this.api = express();
-
 		this.api.use(express.json());
+
+		this.registerSecurityMiddlewares();
 
 		this.registerRoutes();
 
-		this.registerMiddlewares();
+		this.registerErrorMiddlewares();
 	}
 
 	startApi() {
@@ -30,8 +32,12 @@ export class ApiModule {
 		new DomainTokenController(this.api);
 	}
 
-	private registerMiddlewares() {
+	private registerErrorMiddlewares() {
 		this.api.use(BodyValidatorErrorHandler);
 		this.api.use(ErrorHandler);
+	}
+
+	private registerSecurityMiddlewares() {
+		this.api.use(helmet());
 	}
 }
