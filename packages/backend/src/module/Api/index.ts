@@ -3,6 +3,7 @@ import { AnalyticsController } from "../Analytics/controller";
 import setupSwagger from "../../configs/Swagger";
 import { DomainTokenController } from "../DomainToken/controller";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
+import { BodyValidatorErrorHandler } from "./middlewares/BodyValidatorErrorHandler";
 
 export class ApiModule {
 	private api: Application;
@@ -30,6 +31,7 @@ export class ApiModule {
 	}
 
 	private registerMiddlewares() {
+		this.api.use(BodyValidatorErrorHandler);
 		this.api.use(ErrorHandler);
 	}
 }
