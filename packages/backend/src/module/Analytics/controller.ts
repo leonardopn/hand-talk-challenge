@@ -86,7 +86,7 @@ export class AnalyticsController extends Controller {
 	 *                 example: windows
 	 *               domain:
 	 *                 type: string
-	 *                 example: example.com
+	 *                 example: http://localhost:3000
 	 *               themeChanges:
 	 *                 type: number
 	 *                 example: 5

@@ -43,6 +43,22 @@ export class DomainTokenService extends Service {
 		);
 	}
 
+	async getAllAllowedDomains() {
+		const result = await this.noSqlDb.getMany<keyof DomainToken, DomainToken>(this.collection);
+
+		const domainsSet = new Set<string>();
+
+		result.forEach(domainToken => {
+			domainsSet.add(domainToken.domain);
+		});
+
+		if (process.env.NODE_ENV === "development") {
+			domainsSet.add(`http://localhost:${process.env.PORT}`);
+		}
+
+		return Array.from(domainsSet);
+	}
+
 	private signToken(payload?: { [key: string]: any }): string {
 		return jwt.sign(payload || {}, process.env.JWT_SECRET || "");
 	}

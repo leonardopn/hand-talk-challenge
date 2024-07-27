@@ -1,28 +1,37 @@
+import cors from "cors";
 import express, { Application } from "express";
-import { AnalyticsController } from "../Analytics/controller";
-import setupSwagger from "../../configs/Swagger";
-import { DomainTokenController } from "../DomainToken/controller";
-import { ErrorHandler } from "./middlewares/ErrorHandler";
-import { BodyValidatorErrorHandler } from "./middlewares/BodyValidatorErrorHandler";
 import helmet from "helmet";
+import setupSwagger from "../../configs/Swagger";
+import { HttpsError } from "../../errors/HttpsError";
+import { AnalyticsController } from "../Analytics/controller";
+import { DomainTokenController } from "../DomainToken/controller";
+import { DomainTokenService } from "../DomainToken/service";
+import { BodyValidatorErrorHandler } from "./middlewares/BodyValidatorErrorHandler";
+import { ErrorHandler } from "./middlewares/ErrorHandler";
 
 export class ApiModule {
 	private api: Application;
 
-	constructor() {
-		this.api = express();
-		this.api.use(express.json());
+	private domainTokenService: DomainTokenService;
 
-		this.registerSecurityMiddlewares();
+	constructor() {
+		this.domainTokenService = new DomainTokenService();
+		this.api = express();
+	}
+
+	async startApi() {
+		const allowedDomains = await this.domainTokenService.getAllAllowedDomains();
+
+		this.registerSecurityMiddlewares(allowedDomains);
+
+		this.api.use(express.json());
 
 		this.registerRoutes();
 
 		this.registerErrorMiddlewares();
-	}
 
-	startApi() {
-		this.api.listen(4000, () => {
-			console.log("Listening on port 4000");
+		this.api.listen(process.env.PORT, () => {
+			console.log(`Listening on port ${process.env.PORT}`);
 		});
 	}
 
@@ -37,7 +46,26 @@ export class ApiModule {
 		this.api.use(ErrorHandler);
 	}
 
-	private registerSecurityMiddlewares() {
+	private registerSecurityMiddlewares(allowedOrigins: string[]) {
+		this.api.use(
+			cors((req, callback) => {
+				const origin = req.headers.origin;
+
+				const isSameOrigin = !origin && (req.method === "GET" || req.method === "HEAD");
+
+				if (isSameOrigin) {
+					callback(null);
+					return;
+				}
+
+				if (origin && allowedOrigins.includes(origin)) {
+					callback(null);
+				} else {
+					callback(new HttpsError("Forbidden", "Proibido (403)"));
+				}
+			})
+		);
+
 		this.api.use(helmet());
 	}
 }

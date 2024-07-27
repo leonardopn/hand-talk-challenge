@@ -31,7 +31,7 @@ export class DomainTokenController extends Controller {
 	 *             properties:
 	 *               domain:
 	 *                 type: string
-	 *                 example: example.com
+	 *                 example: http://localhost:3000
 	 *               createdBy:
 	 *                 type: string
 	 *                 example: 4VTKkVScztar2u4KMuM3tERqE0o2
