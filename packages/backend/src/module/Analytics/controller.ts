@@ -1,8 +1,9 @@
-import { Application, Request, Response, Router } from "express";
+import { Application, NextFunction, Request, Response, Router } from "express";
 import { Controller } from "../../classes/Controller";
 import { AnalyticsService } from "./service";
 import { COLLECT_ANALYTIC_DATA_DTO, LIST_ANALYTIC_DATA_DTO } from "./dto";
 import { DomainTokenService } from "../DomainToken/service";
+import { HttpsError } from "../../errors/HttpsError";
 
 export class AnalyticsController extends Controller {
 	private analyticsService: AnalyticsService;
@@ -43,18 +44,25 @@ export class AnalyticsController extends Controller {
 	 *       500:
 	 *         description: Error listing data
 	 */
-	private async list(req: Request, res: Response) {
-		const parsedQuery = LIST_ANALYTIC_DATA_DTO.parse(req.query);
+	private async list(req: Request, res: Response, next: NextFunction) {
+		try {
+			const parsedQuery = LIST_ANALYTIC_DATA_DTO.parse(req.query);
 
-		const domainToken = await this.domainTokenService.getOneByToken(parsedQuery.token);
+			const domainToken = await this.domainTokenService.getOneByToken(parsedQuery.token);
 
-		if (!domainToken) {
-			return res.status(404).send("No data found for the provided token");
+			if (!domainToken) {
+				throw new HttpsError(
+					"No data found for the provided token",
+					"Não Encontrado (404)"
+				);
+			}
+
+			const data = await this.analyticsService.listLastTwentyByDomain(domainToken.domain);
+
+			res.send(data);
+		} catch (error) {
+			next(error);
 		}
-
-		const data = await this.analyticsService.listLastTwentyByDomain(domainToken.domain);
-
-		res.send(data);
 	}
 
 	/**
@@ -88,11 +96,15 @@ export class AnalyticsController extends Controller {
 	 *       500:
 	 *         description: Error collecting data
 	 */
-	private async collect(req: Request, res: Response) {
-		const parsedBody = COLLECT_ANALYTIC_DATA_DTO.parse(req.body);
+	private async collect(req: Request, res: Response, next: NextFunction) {
+		try {
+			const parsedBody = COLLECT_ANALYTIC_DATA_DTO.parse(req.body);
 
-		const createdData = await this.analyticsService.createOne(parsedBody);
+			const createdData = await this.analyticsService.createOne(parsedBody);
 
-		res.status(201).send(createdData);
+			res.status(201).send(createdData);
+		} catch (error) {
+			next(error);
+		}
 	}
 }

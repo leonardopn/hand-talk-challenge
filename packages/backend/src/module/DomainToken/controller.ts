@@ -1,4 +1,4 @@
-import { Application, Request, Response } from "express";
+import { Application, NextFunction, Request, Response } from "express";
 import { Controller } from "../../classes/Controller";
 import { CREATE_ONE_DOMAIN_TOKEN_DTO } from "./dto";
 import { DomainTokenService } from "./service";
@@ -41,11 +41,15 @@ export class DomainTokenController extends Controller {
 	 *       400:
 	 *         description: Domain is required
 	 */
-	private async createOne(req: Request, res: Response) {
-		const parsedBody = CREATE_ONE_DOMAIN_TOKEN_DTO.parse(req.body);
+	private async createOne(req: Request, res: Response, next: NextFunction) {
+		try {
+			const parsedBody = CREATE_ONE_DOMAIN_TOKEN_DTO.parse(req.body);
 
-		const domainToken = await this.service.createOne(parsedBody);
+			const domainToken = await this.service.createOne(parsedBody);
 
-		res.status(201).send(domainToken);
+			res.status(201).send(domainToken);
+		} catch (error) {
+			next(error);
+		}
 	}
 }
