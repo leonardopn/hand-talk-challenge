@@ -3,6 +3,7 @@
 	"packageManager": "yarn@4.3.1",
 	"dependencies": {
 		"cors": "^2.8.5",
+		"dayjs": "^1.11.12",
 		"dotenv-safe": "^9.1.0",
 		"express": "^4.19.2",
 		"firebase-admin": "^12.3.0",

@@ -1,9 +1,11 @@
-import { Application, NextFunction, Request, Response, Router } from "express";
+import { Application, NextFunction, Request, Response } from "express";
 import { Controller } from "../../classes/Controller";
-import { AnalyticsService } from "./service";
-import { COLLECT_ANALYTIC_DATA_DTO, LIST_ANALYTIC_DATA_DTO } from "./dto";
-import { DomainTokenService } from "../DomainToken/service";
 import { HttpsError } from "../../errors/HttpsError";
+import { DomainTokenService } from "../DomainToken/service";
+import { COLLECT_ANALYTIC_DATA_DTO, LIST_ANALYTIC_DATA_DTO } from "./dto";
+
+import { AnalyticsService } from "./service";
+import dayjs from "dayjs";
 
 export class AnalyticsController extends Controller {
 	private analyticsService: AnalyticsService;
@@ -18,7 +20,11 @@ export class AnalyticsController extends Controller {
 
 	protected registerRoutes() {
 		this.api.get(this.joinRoutePath("/list"), this.list.bind(this));
-		this.api.post(this.joinRoutePath("/collect"), this.collect.bind(this));
+		this.api.post(
+			this.joinRoutePath("/collect"),
+			this.verifyDomainToken.bind(this),
+			this.collect.bind(this)
+		);
 	}
 
 	/**
@@ -71,6 +77,8 @@ export class AnalyticsController extends Controller {
 	 *   post:
 	 *     summary: Collect data from plugin
 	 *     tags: [Analytics]
+	 *     security:
+	 *       - bearerAuth: []
 	 *     requestBody:
 	 *       required: true
 	 *       content:
@@ -93,6 +101,8 @@ export class AnalyticsController extends Controller {
 	 *     responses:
 	 *       200:
 	 *         description: Data collected successfully
+	 *       401:
+	 *         description: Unauthorized
 	 *       500:
 	 *         description: Error collecting data
 	 */
@@ -103,6 +113,35 @@ export class AnalyticsController extends Controller {
 			const createdData = await this.analyticsService.createOne(parsedBody);
 
 			res.status(201).send(createdData);
+		} catch (error) {
+			next(error);
+		}
+	}
+
+	private async verifyDomainToken(req: Request, _: Response, next: NextFunction) {
+		try {
+			const { authorization } = req.headers;
+
+			const token = authorization?.split(" ")?.[1];
+
+			if (!token) throw new HttpsError("Token ausente", "Não Autorizado (401)");
+
+			this.domainTokenService.verifyToken(token);
+
+			const domainToken = await this.domainTokenService.getOneByToken(token);
+
+			if (!domainToken) throw new HttpsError("Token inexistente", "Não Encontrado (404)");
+
+			if (!domainToken.isAllowedToRequest()) {
+				throw new HttpsError(
+					`Token realizou muitas requisições em pouco tempo. Liberação do token em ${dayjs(domainToken.rateLimit.resetAt).format("DD/MM/YYYY HH:mm:ss")}`,
+					"Muitas Requisições (429)"
+				);
+			}
+
+			await this.domainTokenService.updateOne(domainToken);
+
+			next();
 		} catch (error) {
 			next(error);
 		}

@@ -1,7 +1,8 @@
-import jwt from "jsonwebtoken";
+import jwt, { JsonWebTokenError } from "jsonwebtoken";
 import { Service } from "../../classes/Service";
 import { DomainToken } from "../../classes/DomainToken";
 import { CreateOneDomainTokenDto } from "./dto";
+import { HttpsError } from "../../errors/HttpsError";
 
 export class DomainTokenService extends Service {
 	constructor() {
@@ -39,6 +40,7 @@ export class DomainTokenService extends Service {
 			foundDomainToken.createdBy,
 			foundDomainToken.domain,
 			foundDomainToken.token,
+			foundDomainToken.rateLimit,
 			foundDomainToken.createdAt
 		);
 	}
@@ -59,7 +61,23 @@ export class DomainTokenService extends Service {
 		return Array.from(domainsSet);
 	}
 
+	updateOne(data: DomainToken) {
+		return this.noSqlDb.saveData(`${this.collection}/${data.id}`, data);
+	}
+
 	private signToken(payload?: { [key: string]: any }): string {
 		return jwt.sign(payload || {}, process.env.JWT_SECRET || "");
+	}
+
+	verifyToken(token: string) {
+		try {
+			return jwt.verify(token, process.env.JWT_SECRET || "");
+		} catch (error) {
+			if (error instanceof JsonWebTokenError) {
+				throw new HttpsError(error.message, "Não Autorizado (401)");
+			} else {
+				throw error;
+			}
+		}
 	}
 }

@@ -1,4 +1,4 @@
 export interface IDefaultDocument {
-	id: string;
+	readonly id: string;
 	createdAt: number;
 }
