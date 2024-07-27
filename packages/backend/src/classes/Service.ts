@@ -6,6 +6,10 @@ export class Service {
 	protected noSqlDb: INoSqlDatabase;
 
 	constructor(collection: string) {
+		if (!collection) {
+			throw new Error("Collection is required");
+		}
+
 		this.collection = collection;
 		this.noSqlDb = new FirebaseDatabase();
 	}
