@@ -1,5 +1,6 @@
 import { MobileButtonDrawer } from "../MobileButtonDrawer";
 import { ResponsiveLogo } from "../ResponsiveLogo";
+import { ThemeModeToggle } from "../ThemeModeToggle";
 
 export function TopBar() {
 	return (
@@ -7,7 +8,10 @@ export function TopBar() {
 			<a href="https://www.handtalk.me" className="hover:scale-105 transition-transform">
 				<ResponsiveLogo />
 			</a>
-			<MobileButtonDrawer />
+			<div className="flex gap-2 items-center">
+				<ThemeModeToggle />
+				<MobileButtonDrawer />
+			</div>
 		</div>
 	);
 }
