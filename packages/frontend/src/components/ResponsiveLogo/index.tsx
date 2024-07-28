@@ -4,8 +4,8 @@ import defaultTheme from "tailwindcss/defaultTheme";
 export function ResponsiveLogo() {
 	const common: Omit<Parameters<typeof getImageProps>[0], "src"> = {
 		alt: "Hand talk logo",
-		width: 45,
-		height: 45,
+		width: 100,
+		height: 100,
 	};
 
 	const {
@@ -14,7 +14,7 @@ export function ResponsiveLogo() {
 
 	const {
 		props: { src: logoFull },
-	} = getImageProps({ ...common, className: "size-md", src: "/img/logo-full.svg" });
+	} = getImageProps({ ...common, src: "/img/logo-full.svg" });
 
 	return (
 		<picture>
