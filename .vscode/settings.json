@@ -4,6 +4,7 @@
 		"Web: AnalyticPluginScript",
 		"Web: ResponsiveLogo",
 		"Web: MobileButtonDrawer",
-		"Web: TopBar"
+		"Web: TopBar",
+		"Web: Button"
 	]
 }
