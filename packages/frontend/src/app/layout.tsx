@@ -1,7 +1,8 @@
+import { AnalyticPluginScript } from "@/components/Plugins/AnalyticPluginScript";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
-import "./globals.css";
 import { twMerge } from "tailwind-merge";
+import "./globals.css";
 
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700", "900"] });
 
@@ -18,7 +19,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR">
-			<body className={twMerge(lato.className, "bg-brand-primary-main")}>{children}</body>
+			<body className={twMerge(lato.className, "bg-brand-primary-main")}>
+				{children}
+				<AnalyticPluginScript />
+			</body>
 		</html>
 	);
 }
