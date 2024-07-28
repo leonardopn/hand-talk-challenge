@@ -9,6 +9,7 @@
 		"Web: UserProfile",
 		"Web: Card",
 		"Web: Footer",
-		"Web: Home"
+		"Web: Home",
+		"Web: UserAbout"
 	]
 }

@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { TopBar } from "@/components/TopBar";
+import { UserAbout } from "@/components/UserAbout";
 import { UserProfile } from "@/components/UserProfile";
 
 export default function Home() {
@@ -8,8 +9,9 @@ export default function Home() {
 			<header>
 				<TopBar />
 			</header>
-			<section>
+			<section className="flex flex-col gap-xxs">
 				<UserProfile />
+				<UserAbout />
 			</section>
 			<Footer />
 		</main>
