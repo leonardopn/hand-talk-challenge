@@ -1,9 +1,10 @@
 import * as Avatar from "@radix-ui/react-avatar";
 import { Button } from "../Button";
+import { Card } from "../Card";
 
 export function UserProfile() {
 	return (
-		<div className="gap-xs flex flex-col items-center">
+		<Card>
 			<Avatar.Root>
 				<Avatar.Image
 					className="rounded-circular size-36"
@@ -19,6 +20,6 @@ export function UserProfile() {
 			<a href="https://github.com/leonardopn" target="_blank" rel="noreferrer">
 				<Button aria-label="Entre em contato">Entre em contato</Button>
 			</a>
-		</div>
+		</Card>
 	);
 }

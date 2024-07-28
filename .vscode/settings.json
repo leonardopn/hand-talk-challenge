@@ -6,6 +6,7 @@
 		"Web: MobileButtonDrawer",
 		"Web: TopBar",
 		"Web: Button",
-		"Web: UserProfile"
+		"Web: UserProfile",
+		"Web: Card"
 	]
 }
