@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-a {
+a:not(:has(button)) {
 	text-decoration: underline;
 }
 
