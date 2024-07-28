@@ -1,4 +1,8 @@
 {
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"conventionalCommits.scopes": ["Web: AnalyticPluginScript", "Web: ResponsiveLogo"]
+	"conventionalCommits.scopes": [
+		"Web: AnalyticPluginScript",
+		"Web: ResponsiveLogo",
+		"Web: MobileButtonDrawer"
+	]
 }

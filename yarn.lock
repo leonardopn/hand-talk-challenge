@@ -369,6 +369,7 @@ __metadata:
     "@types/react-dom": "npm:^18"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.2.5"
+    lucide-react: "npm:^0.417.0"
     next: "npm:14.2.5"
     postcss: "npm:^8"
     prettier-plugin-tailwindcss: "npm:^0.6.5"
@@ -4920,6 +4921,15 @@ __metadata:
     lodash.clonedeep: "npm:^4.5.0"
     lru-cache: "npm:6.0.0"
   checksum: 10c0/13cf6bc9ff74cdb167078dbb66d4cf43adc802495da8f56097e6f388b4d7ccb91668beb809bdbc55b62d016c138d7c19a18c5883a2fdbcc7f508ad8a23ec7c65
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.417.0":
+  version: 0.417.0
+  resolution: "lucide-react@npm:0.417.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/97940d6beffa80fb869d979e55dd7c2203d0bc76128cd676cd1bda06d63ad99219d0fda1d639fbca801ea27c628c786f2926511b1527a4fb9f984c4208977146
   languageName: node
   linkType: hard
 
