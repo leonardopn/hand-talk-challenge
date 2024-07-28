@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+a {
+	text-decoration: underline;
+}
+
 #analytics-plugin-button-collect {
 	margin-bottom: 80px;
 }
