@@ -6,7 +6,15 @@ export class AnalyticsCollector {
 	}
 
 	private getDeviceType() {
-		return /Mobi|Android/i.test(navigator.userAgent) ? "mobile" : "desktop";
+		const userAgent = navigator.userAgent.toLowerCase();
+
+		if (/(android)/.test(userAgent)) {
+			return "android";
+		} else if (/(iphone|ipad|ipod)/.test(userAgent)) {
+			return "ios";
+		} else {
+			return "desktop";
+		}
 	}
 
 	private getOperatingSystem() {
