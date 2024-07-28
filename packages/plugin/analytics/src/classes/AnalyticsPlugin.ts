@@ -1,10 +1,10 @@
-import { Button } from "../components/Button";
+import { SendAnalyticDataButton } from "../components/SendAnalyticDataButton";
 import { ApiService } from "../service/api";
 import { AnalyticsCollector } from "./AnalyticsCollector";
 
 export class AnalyticsPlugin {
 	private static token: string;
-	private static button: Button;
+	private static button: SendAnalyticDataButton;
 	private static isConfigured = false;
 	private static analyticsCollector: AnalyticsCollector;
 
@@ -21,7 +21,7 @@ export class AnalyticsPlugin {
 
 		this.analyticsCollector = new AnalyticsCollector(getThemeChangeCount);
 
-		this.button = new Button(buttonStyle, this.sendData.bind(this));
+		this.button = new SendAnalyticDataButton(buttonStyle, this.sendData.bind(this));
 
 		this.isConfigured = true;
 	}
@@ -40,15 +40,17 @@ export class AnalyticsPlugin {
 		}
 
 		try {
+			this.button.toggleLoading();
+
 			const apiService = new ApiService(this.token);
 
 			const collectedData = this.analyticsCollector.collectAnalyticsData();
 
 			await apiService.sendData(collectedData);
-			alert("Dados enviados!");
 		} catch (error) {
 			console.error(error);
-			alert("Erro ao enviar dados.");
+		} finally {
+			this.button.toggleLoading();
 		}
 	}
 }
