@@ -1,6 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { TopBar } from "@/components/TopBar";
 import { UserAbout } from "@/components/UserAbout";
+import { UserPosts } from "@/components/UserPosts";
 import { UserProfile } from "@/components/UserProfile";
 import { UserProjects } from "@/components/UserProjects";
 
@@ -14,6 +15,7 @@ export default function Home() {
 				<UserProfile />
 				<UserAbout />
 				<UserProjects />
+				<UserPosts />
 			</section>
 			<Footer />
 		</main>

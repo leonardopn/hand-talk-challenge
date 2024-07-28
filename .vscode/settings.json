@@ -11,6 +11,7 @@
 		"Web: Footer",
 		"Web: Home",
 		"Web: UserAbout",
-		"Web: UserProjects"
+		"Web: UserProjects",
+		"Web: UserPosts"
 	]
 }
