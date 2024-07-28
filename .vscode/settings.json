@@ -3,6 +3,7 @@
 	"conventionalCommits.scopes": [
 		"Web: AnalyticPluginScript",
 		"Web: ResponsiveLogo",
-		"Web: MobileButtonDrawer"
+		"Web: MobileButtonDrawer",
+		"Web: TopBar"
 	]
 }
