@@ -3,9 +3,11 @@
 	"packageManager": "yarn@4.3.1",
 	"devDependencies": {
 		"@types/copyfiles": "^2",
+		"@types/dotenv-webpack": "^7.0.7",
 		"@types/toastify-js": "^1",
 		"copyfiles": "^2.4.1",
 		"css-loader": "^7.1.2",
+		"dotenv-webpack": "^8.1.0",
 		"nodemon": "^3.1.4",
 		"style-loader": "^4.0.0",
 		"ts-loader": "^9.5.1",

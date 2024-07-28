@@ -356,9 +356,11 @@ __metadata:
   resolution: "@hand-talk-challenge/plugin-analytics@workspace:packages/plugin/analytics"
   dependencies:
     "@types/copyfiles": "npm:^2"
+    "@types/dotenv-webpack": "npm:^7.0.7"
     "@types/toastify-js": "npm:^1"
     copyfiles: "npm:^2.4.1"
     css-loader: "npm:^7.1.2"
+    dotenv-webpack: "npm:^8.1.0"
     nodemon: "npm:^3.1.4"
     style-loader: "npm:^4.0.0"
     toastify-js: "npm:^1.12.0"
@@ -790,6 +792,17 @@ __metadata:
     "@types/node": "npm:*"
     dotenv: "npm:^8.2.0"
   checksum: 10c0/59405ee579d0ad2ed128d8f27c7f2ce21718de69d51aa29d036e7bbd82df09f88af67078aeb7281faf06965b09397d434ff4cb0243b120869fb342aad39348e5
+  languageName: node
+  linkType: hard
+
+"@types/dotenv-webpack@npm:^7.0.7":
+  version: 7.0.7
+  resolution: "@types/dotenv-webpack@npm:7.0.7"
+  dependencies:
+    "@types/node": "npm:*"
+    tapable: "npm:^2.2.0"
+    webpack: "npm:^5"
+  checksum: 10c0/09e6057caf28e8bcefe61b27278bd932358b3773012086c442757d43cab5e0daddfbc5fb5e8203ecd051591a4c1d295db55a7cc84900a158cca44ab9cf171974
   languageName: node
   linkType: hard
 
@@ -2334,12 +2347,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv-defaults@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "dotenv-defaults@npm:2.0.2"
+  dependencies:
+    dotenv: "npm:^8.2.0"
+  checksum: 10c0/14b7b8f6c21a30404106384398728746e63405bfeabe47ef7aadd0e81de49986d5896a612e5b1acddf655af6472a24947b7b113aa3ef3270a2877afa9c5bd287
+  languageName: node
+  linkType: hard
+
 "dotenv-safe@npm:^9.1.0":
   version: 9.1.0
   resolution: "dotenv-safe@npm:9.1.0"
   peerDependencies:
     dotenv: ">= 8.2.0"
   checksum: 10c0/0e1cb4fbd65fea8c0e3dfc98a793d5a783ea1e361ecc250e6f5e28b9385fff9388ad85d7da7eb6402ed8f9591f91bf3b4a1ad9911cb746dd16acdd341d1d36e1
+  languageName: node
+  linkType: hard
+
+"dotenv-webpack@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "dotenv-webpack@npm:8.1.0"
+  dependencies:
+    dotenv-defaults: "npm:^2.0.2"
+  peerDependencies:
+    webpack: ^4 || ^5
+  checksum: 10c0/7a64587fc96eba8e4ffccf56d6af09606611a32bc5cf04a37057b8c2881bcd11bf43c3395404581be734ae7fd2788471ceac76cb3d0ba1283e675223f98e5816
   languageName: node
   linkType: hard
 
@@ -7314,7 +7347,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.93.0":
+"webpack@npm:^5, webpack@npm:^5.93.0":
   version: 5.93.0
   resolution: "webpack@npm:5.93.0"
   dependencies:

@@ -98,7 +98,7 @@
 				},
 				196: (t, e, n) => {
 					"use strict";
-					n.r(e), n.d(e, { default: () => v });
+					n.r(e), n.d(e, { default: () => m });
 					var o = n(478),
 						i = n.n(o),
 						s = n(135),
@@ -112,14 +112,14 @@
 						f = n(279),
 						h = n.n(f),
 						y = n(45),
-						m = {};
-					(m.styleTagTransform = h()),
-						(m.setAttributes = u()),
-						(m.insert = c().bind(null, "head")),
-						(m.domAPI = a()),
-						(m.insertStyleElement = p()),
-						i()(y.A, m);
-					const v = y.A && y.A.locals ? y.A.locals : void 0;
+						v = {};
+					(v.styleTagTransform = h()),
+						(v.setAttributes = u()),
+						(v.insert = c().bind(null, "head")),
+						(v.domAPI = a()),
+						(v.insertStyleElement = p()),
+						i()(y.A, v);
+					const m = y.A && y.A.locals ? y.A.locals : void 0;
 				},
 				478: t => {
 					"use strict";
@@ -600,9 +600,12 @@
 						}
 						return (
 							(t.prototype.getDeviceType = function () {
-								return /Mobi|Android/i.test(navigator.userAgent)
-									? "mobile"
-									: "desktop";
+								var t = navigator.userAgent.toLowerCase();
+								return /(android)/.test(t)
+									? "android"
+									: /(iphone|ipad|ipod)/.test(t)
+										? "ios"
+										: "desktop";
 							}),
 							(t.prototype.getOperatingSystem = function () {
 								return navigator.platform;

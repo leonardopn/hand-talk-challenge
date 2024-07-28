@@ -3,7 +3,7 @@ export class ApiService {
 	private token: string;
 
 	constructor(token: string) {
-		this.baseUrl = "http://localhost:4000";
+		this.baseUrl = process.env.API_URL || "";
 		this.token = token;
 	}
 
