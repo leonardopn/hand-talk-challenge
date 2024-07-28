@@ -372,6 +372,7 @@ __metadata:
     lucide-react: "npm:^0.417.0"
     next: "npm:14.2.5"
     postcss: "npm:^8"
+    prettier-plugin-classnames: "npm:^0.7.1"
     prettier-plugin-tailwindcss: "npm:^0.6.5"
     react: "npm:^18"
     react-dom: "npm:^18"
@@ -5877,6 +5878,22 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: 10c0/b00d617431e7886c520a6f498a2e14c75ec58f6d93ba48c3b639cf241b54232d90daa05d83a9e9b9fef6baa63cb7e1e4602c2372fea5bc169668401eb127d0cd
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-classnames@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "prettier-plugin-classnames@npm:0.7.1"
+  peerDependencies:
+    prettier: ^2 || ^3
+    prettier-plugin-astro: "*"
+    prettier-plugin-svelte: "*"
+  peerDependenciesMeta:
+    prettier-plugin-astro:
+      optional: true
+    prettier-plugin-svelte:
+      optional: true
+  checksum: 10c0/eae73b48079b798551bb06c8be7e62ed18a974cccbf6a264400c10b5ac40dd4c5380cad6491e4549cb5be4ca132a48317be703e4535c740110fb29cc3f80f58d
   languageName: node
   linkType: hard
 

@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-const defaultTheme = require("tailwindcss/defaultTheme");
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const config: Config = {
 	content: [
@@ -105,6 +105,8 @@ const config: Config = {
 		},
 		borderRadius: {
 			none: "0",
+			xs: ".25rem", // 8px,
+			sm: ".5rem", // 8px,
 			md: "0.75rem", // 12px,
 			xd: "1.375rem", // 22px
 			circular: "50%",
