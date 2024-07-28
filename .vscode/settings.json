@@ -5,6 +5,7 @@
 		"Web: ResponsiveLogo",
 		"Web: MobileButtonDrawer",
 		"Web: TopBar",
-		"Web: Button"
+		"Web: Button",
+		"Web: UserProfile"
 	]
 }
