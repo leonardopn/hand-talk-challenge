@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
 const buttonVariant = tv({
-	base: "py-nano px-xxxs font-semiBold rounded-xs transition-colors focus:outline-none focus:ring-2 text-brand-primary-main",
+	base: "py-nano px-xxxs font-semiBold rounded-xs transition-colors focus:outline-none focus:ring-2 text-neutral-high-lightest",
 	variants: {
 		color: {
 			primary:
