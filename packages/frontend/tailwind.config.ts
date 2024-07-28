@@ -119,17 +119,18 @@ const config: Config = {
 		boxShadow: {
 			level1: "0px 4px 8px rgba(0, 0, 0, 0.08)",
 		},
-		spacing: {
-			quark: "0.25rem", // 4px
-			nano: "0.5rem", // 8px
-			xxxs: "0.75rem", // 12px
-			xxs: "1rem", // 16px
-			xs: "1.5rem", // 24px
-			sm: "2rem", // 32px
-		},
+
 		extend: {
 			fontFamily: {
 				sans: ["Lato", ...defaultTheme.fontFamily.sans],
+			},
+			spacing: {
+				quark: "0.25rem", // 4px
+				nano: "0.5rem", // 8px
+				xxxs: "0.75rem", // 12px
+				xxs: "1rem", // 16px
+				xs: "1.5rem", // 24px
+				sm: "2rem", // 32px
 			},
 		},
 	},
