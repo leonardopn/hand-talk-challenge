@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config: Config = {
 	content: [
@@ -80,6 +81,55 @@ const config: Config = {
 				primary: {
 					main: "#003087",
 				},
+			},
+		},
+		fontWeight: {
+			regular: "400",
+			semiBold: "600",
+			bold: "700",
+			extraBold: "800",
+		},
+		fontSize: {
+			xxxs: "0.75rem", // 12px
+			xxs: "0.875rem", // 14px
+			xs: "1rem", // 16px
+			sm: "1.25rem", // 20px
+			md: "1.5rem", // 24px
+			lg: "2rem", // 32px
+		},
+		lineHeight: {
+			default: "100%",
+			sm: "130%",
+			md: "140%",
+			lg: "150%",
+		},
+		borderRadius: {
+			none: "0",
+			md: "0.75rem", // 12px,
+			xd: "1.375rem", // 22px
+			circular: "50%",
+		},
+		borderWidth: {
+			none: "0",
+			thin: "0.125rem", //2px
+		},
+		opacity: {
+			medium: "0.5",
+		},
+		boxShadow: {
+			level1: "0px 4px 8px rgba(0, 0, 0, 0.08)",
+		},
+		spacing: {
+			quark: "0.25rem", // 4px
+			nano: "0.5rem", // 8px
+			xxxs: "0.75rem", // 12px
+			xxs: "1rem", // 16px
+			xs: "1.5rem", // 24px
+			sm: "2rem", // 32px
+		},
+		extend: {
+			fontFamily: {
+				sans: ["Lato", ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},
