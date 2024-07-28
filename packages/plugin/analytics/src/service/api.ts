@@ -18,7 +18,12 @@ export class ApiService {
 		});
 
 		if (!response.ok) {
-			throw new Error("Failed to send data");
+			if (response.status !== 200) {
+				const body = await response.json();
+				const errorMessage = body.message || "Erro ao enviar dados";
+
+				throw new Error(errorMessage);
+			}
 		}
 	}
 }
