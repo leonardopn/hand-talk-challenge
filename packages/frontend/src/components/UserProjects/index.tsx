@@ -40,7 +40,7 @@ const projects = [
 
 export function UserProjects() {
 	return (
-		<Card className="items-start">
+		<Card>
 			<h2 className="font-extraBold text-md">Projetos</h2>
 			{projects.map(project => {
 				return (

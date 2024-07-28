@@ -33,7 +33,7 @@ const skills = [
 
 export function UserAbout() {
 	return (
-		<Card className="items-stretch">
+		<Card>
 			<section className="flex flex-col gap-xxs text-justify">
 				<h2 className="font-extraBold text-md">Sobre mim</h2>
 				<p>

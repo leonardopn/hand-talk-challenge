@@ -5,7 +5,7 @@ import { Card } from "../Card";
 
 export function UserProfile() {
 	return (
-		<Card>
+		<Card className="items-center">
 			<Avatar.Root>
 				<Avatar.Image
 					className="rounded-circular size-36"
