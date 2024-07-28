@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
+import { twMerge } from "tailwind-merge";
 
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700", "900"] });
 
@@ -16,8 +17,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className={lato.className}>{children}</body>
+		<html lang="pt-BR">
+			<body className={twMerge(lato.className, "bg-brand-primary-main")}>{children}</body>
 		</html>
 	);
 }
