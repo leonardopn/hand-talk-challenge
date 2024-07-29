@@ -7,7 +7,7 @@ export class FirebaseDatabase implements INoSqlDatabase {
 		const id = firebaseDatabase.ref().push().key;
 
 		if (!id) {
-			throw new Error("Error generating id from firebase database");
+			throw new Error("Erro ao gerar um id no Firebase");
 		}
 
 		return id;

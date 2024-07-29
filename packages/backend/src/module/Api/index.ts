@@ -25,7 +25,7 @@ export class ApiModule {
 
 	async startApi() {
 		this.api.listen(process.env.PORT, () => {
-			console.log(`Listening on port ${process.env.PORT}`);
+			console.log(`Servidor API ouvindo na porta: ${process.env.PORT}`);
 		});
 	}
 

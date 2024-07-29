@@ -20,7 +20,7 @@ export class AuthController extends Controller {
 	 * @swagger
 	 * /auth/authenticate:
 	 *   post:
-	 *     summary: Authenticate a user with email and password
+	 *     summary: Autentica um usuário com email e senha
 	 *     tags: [Auth]
 	 *     requestBody:
 	 *       required: true
@@ -35,6 +35,13 @@ export class AuthController extends Controller {
 	 *               password:
 	 *                 type: string
 	 *                 example: 123456
+	 *     responses:
+	 *       200:
+	 *         description: Sucesso contendo o token personalizado para autenticação..
+	 *       404:
+	 *         description: Quando algum dos parâmetros informados não estiver padronizado.
+	 *       500:
+	 *         description: Qualquer outra situação inesperada
 	 */
 	async authenticate(req: Request, rest: Response, next: NextFunction) {
 		try {

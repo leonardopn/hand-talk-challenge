@@ -10,12 +10,12 @@ const swaggerOptions: swaggerJsdoc.Options = {
 		info: {
 			title: "Analytics API",
 			version: "1.0.0",
-			description: "API documentation for the Backend Analytics API",
+			description: "Acesso rápido as rotas da API de dados analíticos.",
 		},
 		servers: [
 			{
 				url: `http://localhost:${process.env.PORT}`,
-				description: "Local server",
+				description: "Servidor local",
 			},
 		],
 		components: {

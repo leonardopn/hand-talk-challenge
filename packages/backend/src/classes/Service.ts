@@ -7,7 +7,7 @@ export class Service {
 
 	constructor(collection: string) {
 		if (!collection) {
-			throw new Error("Collection is required");
+			throw new Error("Coleção é necessária.");
 		}
 
 		this.collection = collection;

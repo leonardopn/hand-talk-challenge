@@ -30,7 +30,7 @@ export class AnalyticsController extends Controller {
 	 * @swagger
 	 * /analytics/list:
 	 *   get:
-	 *     summary: List the last 20 data collections by token
+	 *     summary: Lista os últimos 20 dados analíticos por domínio
 	 *     tags: [Analytics]
 	 *     parameters:
 	 *       - in: query
@@ -38,16 +38,14 @@ export class AnalyticsController extends Controller {
 	 *         required: true
 	 *         schema:
 	 *           type: string
-	 *         description: The token to filter the data
+	 *         description: O token do domínio que será utilizado para filtrar resultados.
 	 *     responses:
 	 *       200:
-	 *         description: List of data collections
-	 *       400:
-	 *         description: Token is required
+	 *         description: Sucesso contendo até 20 dados.
 	 *       404:
-	 *         description: No data found for the provided token
+	 *         description: Quando algum dos parâmetros informados não estiver padronizado ou o token passado não existir na base.
 	 *       500:
-	 *         description: Error listing data
+	 *         description: Qualquer outra situação inesperada
 	 */
 	private async list(req: Request, res: Response, next: NextFunction) {
 		try {
@@ -57,7 +55,7 @@ export class AnalyticsController extends Controller {
 
 			if (!domainToken) {
 				throw new HttpsError(
-					"No data found for the provided token",
+					"Nenhum token encontrado para o domínio informado",
 					"Não Encontrado (404)"
 				);
 			}
@@ -74,7 +72,7 @@ export class AnalyticsController extends Controller {
 	 * @swagger
 	 * /analytics/collect:
 	 *   post:
-	 *     summary: Collect data from plugin
+	 *     summary: Cria um novo dado analítico coletado externamente.
 	 *     tags: [Analytics]
 	 *     security:
 	 *       - bearerAuth: []
@@ -98,12 +96,18 @@ export class AnalyticsController extends Controller {
 	 *                 type: number
 	 *                 example: 5
 	 *     responses:
-	 *       200:
-	 *         description: Data collected successfully
+	 *       201:
+	 *         description: Sucesso contendo o dado criado.
 	 *       401:
-	 *         description: Unauthorized
+	 *         description: Quando não houver permissão para acessar a rota.
+	 *       404:
+	 *         description: Quando algum dos parâmetros informados não estiver padronizado.
+	 *       428:
+	 *         description: Quando o token não for informado no cabeçalho.
+	 *       429:
+	 *         description: Quando o token realizou muitas requisições em um curto período.
 	 *       500:
-	 *         description: Error collecting data
+	 *         description: Qualquer outra situação inesperada.
 	 */
 	private async collect(req: Request, res: Response, next: NextFunction) {
 		try {
@@ -123,10 +127,15 @@ export class AnalyticsController extends Controller {
 			const { authorization } = req.headers;
 
 			const token = authorization?.split(" ")?.[1];
-			if (!token) throw new HttpsError("Token ausente", "Não Autorizado (401)");
+			if (!token)
+				throw new HttpsError(
+					"Token ausente do cabeçalho de requisição",
+					"Pré-condição Necessária (428)"
+				);
 
 			const domainToken = await this.domainTokenService.getOneByToken(token);
-			if (!domainToken) throw new HttpsError("Token inexistente", "Não Encontrado (404)");
+			if (!domainToken)
+				throw new HttpsError("Token inexistente no sistema", "Não Encontrado (404)");
 
 			const parsedBody = COLLECT_ANALYTIC_DATA_DTO.parse(req.body);
 			if (parsedBody.domain !== domainToken.domain) {

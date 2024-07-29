@@ -24,7 +24,7 @@ export class DomainTokenController extends Controller {
 	 * @swagger
 	 * /domain-token:
 	 *   post:
-	 *     summary: Create a new domain token
+	 *     summary: Cria um novo token de domínio
 	 *     tags: [Domain Token]
 	 *     security:
 	 *       - bearerAuth: []
@@ -38,13 +38,28 @@ export class DomainTokenController extends Controller {
 	 *               domain:
 	 *                 type: string
 	 *                 example: http://localhost:3000
+	 *     responses:
+	 *       201:
+	 *         description: Sucesso contendo o token de domínio.
+	 *       428:
+	 *         description: Quando o token não for informado no cabeçalho.
+	 *       409:
+	 *         description: Quando o domínio informado ja possui um token associado.
+	 *       404:
+	 *         description: Quando algum dos parâmetros informados não estiver padronizado.
+	 *       500:
+	 *         description: Qualquer outra situação inesperada
 	 */
 	private async createOne(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { authorization } = req.headers;
 
 			const token = authorization?.split(" ")?.[1];
-			if (!token) throw new HttpsError("Token ausente", "Não Autorizado (401)");
+			if (!token)
+				throw new HttpsError(
+					"Token ausente no cabeçalho da requisição.",
+					"Pré-condição Necessária (428)"
+				);
 
 			const parsedToken = await this.authService.verifyToken(token);
 
