@@ -36,7 +36,9 @@ export function LateralMenuDrawer() {
 						bottom-0 right-0 z-50 gap-2">
 					<header className="bg-brand-secondary-main dark:bg-highlight-primary-main p-4 h-16 flex justify-between">
 						<div className="flex gap-2 items-center">
-							<Drawer.Close className="w-fit text-neutral-high-lightest">
+							<Drawer.Close
+								className="w-fit text-neutral-high-lightest"
+								aria-label="Botão para fechar a gaveta">
 								<PanelRightClose />
 							</Drawer.Close>
 							<ThemeModeToggle />
