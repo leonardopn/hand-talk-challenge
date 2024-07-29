@@ -25,11 +25,11 @@ export function PostCard({ post }: PostCardProps) {
 				</p>
 				<section className="flex items-center gap-2">
 					<time className="text-neutral-low text-xxs">
-						<Calendar className={iconClass()} />
+						<Calendar className={iconClass()} aria-label="Ícone de calendário" />
 						{post.date}
 					</time>
 					<span>
-						<Clock className={iconClass()} />
+						<Clock className={iconClass()} aria-label="Ícone de relógio" />
 						{post.readingTime}
 					</span>
 				</section>
