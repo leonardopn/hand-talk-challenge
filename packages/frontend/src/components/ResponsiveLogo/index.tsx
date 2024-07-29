@@ -19,8 +19,16 @@ export function ResponsiveLogo() {
 
 	return (
 		<picture>
-			<source media={`(max-width: ${defaultTheme.screens.sm})`} srcSet={logoIcon} />
-			<source media={`(min-width: ${defaultTheme.screens.sm})`} srcSet={logoFull} />
+			<source
+				data-testid="logo-icon"
+				media={`(max-width: ${defaultTheme.screens.sm})`}
+				srcSet={logoIcon}
+			/>
+			<source
+				data-testid="logo-full"
+				media={`(min-width: ${defaultTheme.screens.sm})`}
+				srcSet={logoFull}
+			/>
 			<Image alt={common.alt} {...restProps} src={logoIcon} />
 		</picture>
 	);
