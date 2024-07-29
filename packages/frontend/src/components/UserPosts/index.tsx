@@ -1,6 +1,8 @@
 import { IPost } from "@/interfaces/Post";
 import { Card } from "../Card";
 import { PostCard } from "../PostCard";
+import { Button } from "../Button";
+import { ExternalLink } from "lucide-react";
 
 const posts: IPost[] = [
 	{
@@ -39,6 +41,18 @@ export function UserPosts() {
 			{posts.map(post => {
 				return <PostCard post={post} key={post.id} />;
 			})}
+			<a
+				href="https://www.leonardopetta.dev/blog"
+				target="_blank"
+				rel="noreferrer"
+				className="w-full">
+				<Button
+					colorScheme="purple"
+					aria-label="Ver todos os projetos"
+					className="items-center justify-center flex gap-2 w-full">
+					Ver todas as postagens <ExternalLink className="inline size-5" />
+				</Button>
+			</a>
 		</Card>
 	);
 }
