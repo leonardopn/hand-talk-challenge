@@ -1,5 +1,6 @@
 "use client";
 
+import { useThemeChangeCounterContext } from "@/contexts/ThemeChangeCounterContext";
 import { LoaderCircle, Moon, Sun, SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -10,9 +11,10 @@ const buttonVariant = tv({
 });
 
 export function ThemeModeToggle() {
-	const { setTheme, themes, theme } = useTheme();
-
 	const [isClient, setIsClient] = useState(false);
+
+	const { setThemeChangeCounter } = useThemeChangeCounterContext();
+	const { setTheme, themes, theme } = useTheme();
 
 	useEffect(() => {
 		setIsClient(true);
@@ -24,7 +26,8 @@ export function ThemeModeToggle() {
 		const nextTheme = themes[nextThemeIndex];
 
 		setTheme(nextTheme);
-	}, [setTheme, theme, themes]);
+		setThemeChangeCounter(oldState => oldState + 1);
+	}, [setTheme, setThemeChangeCounter, theme, themes]);
 
 	const currentIconTheme = useMemo(() => {
 		switch (theme) {

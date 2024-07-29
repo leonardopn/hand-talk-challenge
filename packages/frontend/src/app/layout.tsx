@@ -1,5 +1,6 @@
 import { GoToTopButton } from "@/components/GoToTopButton";
 import { AnalyticPluginScript } from "@/components/Plugins/AnalyticPluginScript";
+import { ThemeChangeCounterContextProvider } from "@/contexts/ThemeChangeCounterContext";
 import { ThemeProvider } from "@/providers/NextThemeProvider";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
@@ -27,15 +28,17 @@ export default function RootLayout({
 					`bg-brand-primary-main dark:bg-brand-primary-medium dark:text-neutral-high-lightest
 					text-neutral-low-main`
 				)}>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange>
-					{children}
-					<GoToTopButton />
-					<AnalyticPluginScript />
-				</ThemeProvider>
+				<ThemeChangeCounterContextProvider>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange>
+						{children}
+						<GoToTopButton />
+						<AnalyticPluginScript />
+					</ThemeProvider>
+				</ThemeChangeCounterContextProvider>
 			</body>
 		</html>
 	);
