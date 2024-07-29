@@ -34,9 +34,13 @@ const posts: IPost[] = [
 	},
 ];
 
-export function UserPosts() {
+interface UserPostsProps {
+	className?: string;
+}
+
+export function UserPosts({ className }: UserPostsProps) {
 	return (
-		<Card>
+		<Card className={className}>
 			<h2 className="font-extraBold text-md">Últimas Postagens</h2>
 			{posts.map(post => {
 				return <PostCard post={post} key={post.id} />;

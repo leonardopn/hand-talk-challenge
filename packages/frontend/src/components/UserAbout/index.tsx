@@ -31,9 +31,13 @@ const skills = [
 	},
 ];
 
-export function UserAbout() {
+interface UserAboutProps {
+	className?: string;
+}
+
+export function UserAbout({ className }: UserAboutProps) {
 	return (
-		<Card>
+		<Card className={className}>
 			<section className="flex flex-col gap-xxs text-justify">
 				<h2 className="font-extraBold text-md">Sobre mim</h2>
 				<p>

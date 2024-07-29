@@ -38,9 +38,13 @@ const projects = [
 	},
 ];
 
-export function UserProjects() {
+interface UserProjectsProps {
+	className?: string;
+}
+
+export function UserProjects({ className }: UserProjectsProps) {
 	return (
-		<Card>
+		<Card className={className}>
 			<h2 className="font-extraBold text-md">Projetos</h2>
 			{projects.map(project => {
 				return (
@@ -49,7 +53,7 @@ export function UserProjects() {
 						className="w-full border-thin rounded-md p-4 border-neutral-high-light dark:border-neutral-high-dark flex
 							flex-col gap-xxs">
 						<Image
-							className="w-full h-40 rounded-xs object-cover shadow-level1"
+							className="w-full h-52 rounded-xs object-cover shadow-level1"
 							src={project.photo}
 							alt={`Imagem do projeto ${project.name}`}
 							width={300}

@@ -2,10 +2,15 @@ import * as Avatar from "@radix-ui/react-avatar";
 import { Rss } from "lucide-react";
 import { Button } from "../Button";
 import { Card } from "../Card";
+import { twMerge } from "tailwind-merge";
 
-export function UserProfile() {
+interface UserProfileProps {
+	className?: string;
+}
+
+export function UserProfile({ className }: UserProfileProps) {
 	return (
-		<Card className="items-center">
+		<Card className={twMerge("items-center", className)}>
 			<Avatar.Root>
 				<Avatar.Image
 					className="rounded-circular size-36"

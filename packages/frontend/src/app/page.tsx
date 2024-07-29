@@ -8,14 +8,16 @@ import { UserProjects } from "@/components/UserProjects";
 export default function Home() {
 	return (
 		<main className="gap-sm flex flex-col min-h-screen">
-			<header className="fixed top-0 w-full">
+			<header className="sticky top-0 w-full z-50">
 				<TopBar />
 			</header>
-			<section className="flex flex-col gap-sm mt-24">
-				<UserProfile />
-				<UserAbout />
+			<section className="grid grid-cols-1 gap-sm lg:grid-cols-2 lg:mx-sm max-w-screen-2xl justify-center self-center">
+				<div className="flex flex-col gap-sm">
+					<UserProfile />
+					<UserAbout className="sticky top-0" />
+				</div>
 				<UserProjects />
-				<UserPosts />
+				<UserPosts className="lg:col-span-2" />
 			</section>
 			<Footer />
 		</main>
