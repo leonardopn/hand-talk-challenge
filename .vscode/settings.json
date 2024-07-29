@@ -12,6 +12,7 @@
 		"Web: Home",
 		"Web: UserAbout",
 		"Web: UserProjects",
-		"Web: UserPosts"
+		"Web: UserPosts",
+		"Web: ThemeModeToggle"
 	]
 }
