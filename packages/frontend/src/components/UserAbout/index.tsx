@@ -1,3 +1,4 @@
+import { routePaths } from "@/constant/RoutePaths";
 import { Card } from "../Card";
 
 const skills = [
@@ -39,7 +40,9 @@ export function UserAbout({ className }: UserAboutProps) {
 	return (
 		<Card className={className}>
 			<section className="flex flex-col gap-xxs text-justify">
-				<h2 className="font-extraBold text-md">Sobre mim</h2>
+				<h2 className="font-extraBold text-md" id={routePaths.userAbout.path}>
+					{routePaths.userAbout.title}
+				</h2>
 				<p>
 					Olá! Meu nome é Leonardo Petta do Nascimento e sou um desenvolvedor de software
 					apaixonado por criar soluções inovadoras e eficientes. Com mais de 5 anos de

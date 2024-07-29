@@ -1,4 +1,4 @@
-import { MobileButtonDrawer } from "../MobileButtonDrawer";
+import { LateralMenuDrawer } from "../LateralMenuDrawer";
 import { ResponsiveLogo } from "../ResponsiveLogo";
 import { ThemeModeToggle } from "../ThemeModeToggle";
 
@@ -12,7 +12,7 @@ export function TopBar() {
 			</a>
 			<div className="flex gap-2 items-center">
 				<ThemeModeToggle />
-				<MobileButtonDrawer />
+				<LateralMenuDrawer />
 			</div>
 		</div>
 	);

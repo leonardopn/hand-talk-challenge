@@ -3,6 +3,7 @@ import { Card } from "../Card";
 import { PostCard } from "../PostCard";
 import { Button } from "../Button";
 import { ExternalLink } from "lucide-react";
+import { routePaths } from "@/constant/RoutePaths";
 
 const posts: IPost[] = [
 	{
@@ -41,7 +42,9 @@ interface UserPostsProps {
 export function UserPosts({ className }: UserPostsProps) {
 	return (
 		<Card className={className}>
-			<h2 className="font-extraBold text-md">Últimas Postagens</h2>
+			<h2 className="font-extraBold text-md" id={routePaths.userPosts.path}>
+				{routePaths.userPosts.title}
+			</h2>
 			{posts.map(post => {
 				return <PostCard post={post} key={post.id} />;
 			})}

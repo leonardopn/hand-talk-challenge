@@ -3,6 +3,7 @@ import { Rss } from "lucide-react";
 import { Button } from "../Button";
 import { Card } from "../Card";
 import { twMerge } from "tailwind-merge";
+import { routePaths } from "@/constant/RoutePaths";
 
 interface UserProfileProps {
 	className?: string;
@@ -10,7 +11,7 @@ interface UserProfileProps {
 
 export function UserProfile({ className }: UserProfileProps) {
 	return (
-		<Card className={twMerge("items-center", className)}>
+		<Card className={twMerge("items-center", className)} id={routePaths.userProfile.path}>
 			<Avatar.Root>
 				<Avatar.Image
 					className="rounded-circular size-36"

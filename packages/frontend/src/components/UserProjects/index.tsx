@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card } from "../Card";
 import { Button } from "../Button";
 import { ExternalLink } from "lucide-react";
+import { routePaths } from "@/constant/RoutePaths";
 
 const projects = [
 	{
@@ -45,7 +46,9 @@ interface UserProjectsProps {
 export function UserProjects({ className }: UserProjectsProps) {
 	return (
 		<Card className={className}>
-			<h2 className="font-extraBold text-md">Projetos</h2>
+			<h2 className="font-extraBold text-md" id={routePaths.userProjects.path}>
+				{routePaths.userProjects.title}
+			</h2>
 			{projects.map(project => {
 				return (
 					<div
