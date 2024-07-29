@@ -1,11 +1,10 @@
+import dayjs from "dayjs";
 import { Application, NextFunction, Request, Response } from "express";
 import { Controller } from "../../classes/Controller";
 import { HttpsError } from "../../errors/HttpsError";
 import { DomainTokenService } from "../DomainToken/service";
-import { COLLECT_ANALYTIC_DATA_DTO, LIST_ANALYTIC_DATA_DTO } from "./dto";
-
+import { COLLECT_ANALYTIC_DATA_DTO, CollectAnalyticDataDto, LIST_ANALYTIC_DATA_DTO } from "./dto";
 import { AnalyticsService } from "./service";
-import dayjs from "dayjs";
 
 export class AnalyticsController extends Controller {
 	private analyticsService: AnalyticsService;
@@ -108,7 +107,8 @@ export class AnalyticsController extends Controller {
 	 */
 	private async collect(req: Request, res: Response, next: NextFunction) {
 		try {
-			const parsedBody = COLLECT_ANALYTIC_DATA_DTO.parse(req.body);
+			// Middleware já faz essa validação
+			const parsedBody = req.body as CollectAnalyticDataDto;
 
 			const createdData = await this.analyticsService.createOne(parsedBody);
 
@@ -123,14 +123,18 @@ export class AnalyticsController extends Controller {
 			const { authorization } = req.headers;
 
 			const token = authorization?.split(" ")?.[1];
-
 			if (!token) throw new HttpsError("Token ausente", "Não Autorizado (401)");
 
-			this.domainTokenService.verifyToken(token);
-
 			const domainToken = await this.domainTokenService.getOneByToken(token);
-
 			if (!domainToken) throw new HttpsError("Token inexistente", "Não Encontrado (404)");
+
+			const parsedBody = COLLECT_ANALYTIC_DATA_DTO.parse(req.body);
+			if (parsedBody.domain !== domainToken.domain) {
+				throw new HttpsError(
+					`Token inválido para o domínio ${parsedBody.domain}`,
+					"Não Autorizado (401)"
+				);
+			}
 
 			if (!domainToken.isAllowedToRequest()) {
 				throw new HttpsError(
