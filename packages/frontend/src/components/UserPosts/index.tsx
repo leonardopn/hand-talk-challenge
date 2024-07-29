@@ -5,7 +5,7 @@ import { Button } from "../Button";
 import { ExternalLink } from "lucide-react";
 import { routePaths } from "@/constant/RoutePaths";
 
-const posts: IPost[] = [
+export const posts: IPost[] = [
 	{
 		id: 1,
 		title: "Como implementar um estimador de tempo de leitura em suas postagens",
@@ -55,7 +55,7 @@ export function UserPosts({ className }: UserPostsProps) {
 				className="w-full">
 				<Button
 					colorScheme="purple"
-					aria-label="Ver todos os projetos"
+					aria-label="Ver todos as postagens"
 					className="items-center justify-center flex gap-2 w-full">
 					Ver todas as postagens <ExternalLink className="inline size-5" />
 				</Button>
