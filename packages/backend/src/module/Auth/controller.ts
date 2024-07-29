@@ -1,6 +1,7 @@
 import { Application, NextFunction, Request, Response } from "express";
 import { Controller } from "../../classes/Controller";
 import { AuthService } from "./service";
+import { AUTHENTICATE_USER_DTO } from "./dto";
 
 export class AuthController extends Controller {
 	private authService: AuthService;
@@ -37,7 +38,7 @@ export class AuthController extends Controller {
 	 */
 	async authenticate(req: Request, rest: Response, next: NextFunction) {
 		try {
-			const { email, password } = req.body;
+			const { email, password } = AUTHENTICATE_USER_DTO.parse(req.body);
 
 			const { token } = await this.authService.authenticate(email, password);
 
