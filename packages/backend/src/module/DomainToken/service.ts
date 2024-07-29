@@ -45,6 +45,30 @@ export class DomainTokenService extends Service {
 		);
 	}
 
+	async getOneByDomain(domain: string) {
+		const result = await this.noSqlDb.getMany<keyof DomainToken, DomainToken>(this.collection, {
+			equals: {
+				field: "domain",
+				value: domain,
+			},
+		});
+
+		if (result.length === 0) {
+			return null;
+		}
+
+		const foundDomainToken = result[0];
+
+		return new DomainToken(
+			foundDomainToken.id,
+			foundDomainToken.createdBy,
+			foundDomainToken.domain,
+			foundDomainToken.token,
+			foundDomainToken.rateLimit,
+			foundDomainToken.createdAt
+		);
+	}
+
 	updateOne(data: DomainToken) {
 		return this.noSqlDb.saveData(`${this.collection}/${data.id}`, data);
 	}

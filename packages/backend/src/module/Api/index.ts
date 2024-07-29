@@ -2,10 +2,9 @@ import cors from "cors";
 import express, { Application } from "express";
 import helmet from "helmet";
 import setupSwagger from "../../configs/Swagger";
-import { HttpsError } from "../../errors/HttpsError";
 import { AnalyticsController } from "../Analytics/controller";
+import { AuthController } from "../Auth/controller";
 import { DomainTokenController } from "../DomainToken/controller";
-import { DomainTokenService } from "../DomainToken/service";
 import { BodyValidatorErrorHandler } from "./middlewares/BodyValidatorErrorHandler";
 import { ErrorHandler } from "./middlewares/ErrorHandler";
 
@@ -34,6 +33,7 @@ export class ApiModule {
 		setupSwagger(this.api);
 		new AnalyticsController(this.api);
 		new DomainTokenController(this.api);
+		new AuthController(this.api);
 	}
 
 	private registerErrorMiddlewares() {
