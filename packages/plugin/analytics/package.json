@@ -9,6 +9,8 @@
 		"css-loader": "^7.1.2",
 		"dotenv-webpack": "^8.1.0",
 		"nodemon": "^3.1.4",
+		"sass": "^1.77.8",
+		"sass-loader": "^16.0.0",
 		"style-loader": "^4.0.0",
 		"ts-loader": "^9.5.1",
 		"ts-node": "^10.9.2",
@@ -19,7 +21,7 @@
 	"scripts": {
 		"build": "webpack && yarn postbuild",
 		"postbuild": "copyfiles -u 1 \"dist/index.js\" \"../../frontend/public/plugins/pluginAnalytics\"",
-		"start:dev": "nodemon --watch 'src/**/*.ts' --ext 'ts' --exec \"yarn build\""
+		"start:dev": "nodemon --watch 'src/**/*.*' --ext 'ts,scss' --exec \"yarn build\""
 	},
 	"dependencies": {
 		"toastify-js": "^1.12.0"

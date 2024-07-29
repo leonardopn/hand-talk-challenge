@@ -9,9 +9,9 @@ declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
 			/**
-			 * Token para acesso a coleta de dados pelo plugin Analytics
+			 * URL para a api de analytics.
 			 */
-			NEXT_PUBLIC_ANALYTICS_PLUGIN_TOKEN: string;
+			API_URL: string;
 		}
 	}
 }

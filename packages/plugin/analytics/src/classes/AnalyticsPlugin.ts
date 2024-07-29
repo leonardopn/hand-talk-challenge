@@ -9,11 +9,7 @@ export class AnalyticsPlugin {
 	private static isConfigured = false;
 	private static analyticsCollector: AnalyticsCollector;
 
-	static setConfigs(
-		token: string,
-		getThemeChangeCount: () => number,
-		buttonStyle?: CSSStyleDeclaration
-	) {
+	static setConfigs(token: string, getThemeChangeCount: () => number) {
 		if (this.isConfigured) {
 			return;
 		}
@@ -22,7 +18,7 @@ export class AnalyticsPlugin {
 
 		this.analyticsCollector = new AnalyticsCollector(getThemeChangeCount);
 
-		this.button = new SendAnalyticDataButton(buttonStyle, this.sendData.bind(this));
+		this.button = new SendAnalyticDataButton(this.sendData.bind(this));
 
 		this.isConfigured = true;
 	}

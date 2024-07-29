@@ -1,0 +1,24 @@
+.analytics-plugin-button-collect {
+	background-color: #f06f06;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	z-index: 10;
+	padding: 10px 20px;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+
+	transition: opacity 0.2s ease-in-out;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
