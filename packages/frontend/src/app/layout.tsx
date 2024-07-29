@@ -1,3 +1,4 @@
+import { GoToTopButton } from "@/components/GoToTopButton";
 import { AnalyticPluginScript } from "@/components/Plugins/AnalyticPluginScript";
 import { ThemeProvider } from "@/providers/NextThemeProvider";
 import type { Metadata } from "next";
@@ -32,6 +33,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange>
 					{children}
+					<GoToTopButton />
 					<AnalyticPluginScript />
 				</ThemeProvider>
 			</body>

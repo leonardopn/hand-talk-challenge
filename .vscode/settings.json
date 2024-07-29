@@ -13,6 +13,7 @@
 		"Web: UserAbout",
 		"Web: UserProjects",
 		"Web: UserPosts",
-		"Web: ThemeModeToggle"
+		"Web: ThemeModeToggle",
+		"Web: GoToTopButton"
 	]
 }
