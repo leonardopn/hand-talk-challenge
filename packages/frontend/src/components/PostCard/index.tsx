@@ -7,7 +7,9 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
-	const iconClass = tv({ base: "inline size-xxs mr-1 mb-1 text-brand-secondary-main" });
+	const iconClass = tv({
+		base: "inline size-xxs mr-1 mb-1 text-brand-secondary-main",
+	});
 
 	return (
 		<a
@@ -18,7 +20,9 @@ export function PostCard({ post }: PostCardProps) {
 			className="no-underline hover:underline">
 			<div className="text-justify space-y-1">
 				<h3 className="font-bold">{post.title}</h3>
-				<p className="text-neutral-low-medium text-xxs">{post.content}</p>
+				<p className="text-neutral-low-medium dark:text-neutral-high-medium text-xxs">
+					{post.content}
+				</p>
 				<section className="flex items-center gap-2">
 					<time className="text-neutral-low text-xxs">
 						<Calendar className={iconClass()} />

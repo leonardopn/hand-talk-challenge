@@ -1,9 +1,9 @@
 import { AnalyticPluginScript } from "@/components/Plugins/AnalyticPluginScript";
+import { ThemeProvider } from "@/providers/NextThemeProvider";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import { twMerge } from "tailwind-merge";
-import "./globals.css";
-import { ThemeProvider } from "@/providers/NextThemeProvider";
+import "./globals.scss";
 
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700", "900"] });
 
@@ -20,7 +20,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR">
-			<body className={twMerge(lato.className, "bg-brand-primary-main")}>
+			<body
+				className={twMerge(
+					lato.className,
+					`bg-brand-primary-main dark:bg-brand-primary-medium dark:text-neutral-high-lightest
+					text-neutral-low-main`
+				)}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"

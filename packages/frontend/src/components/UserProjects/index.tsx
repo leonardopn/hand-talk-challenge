@@ -46,7 +46,8 @@ export function UserProjects() {
 				return (
 					<div
 						key={project.id}
-						className="w-full border-thin rounded-md p-4 border-neutral-high-light flex flex-col gap-xxs">
+						className="w-full border-thin rounded-md p-4 border-neutral-high-light dark:border-neutral-high-dark flex
+							flex-col gap-xxs">
 						<Image
 							className="w-full h-40 rounded-xs object-cover shadow-level1"
 							src={project.photo}
@@ -56,7 +57,9 @@ export function UserProjects() {
 						/>
 						<section className="text-center">
 							<h3 className="font-bold text-sm">{project.name}</h3>
-							<p className="text-neutral-low-medium">{project.description}</p>
+							<p className="text-neutral-low-medium dark:text-neutral-high-medium">
+								{project.description}
+							</p>
 						</section>
 
 						<a href={project.link} target="_blank" rel="noreferrer">

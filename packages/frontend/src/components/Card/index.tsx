@@ -7,7 +7,7 @@ export function Card({ children, className, ...props }: CardProps) {
 	return (
 		<div
 			className={twMerge(
-				"gap-xs flex flex-col bg-neutral-high-lightest shadow-level1 p-xxxs",
+				"gap-xs flex flex-col bg-neutral-high-lightest dark:bg-brand-primary-dark shadow-level1 p-xxxs",
 				className
 			)}
 			{...props}>
