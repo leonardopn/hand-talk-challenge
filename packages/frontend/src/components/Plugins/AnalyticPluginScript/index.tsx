@@ -8,6 +8,7 @@ export function AnalyticPluginScript() {
 
 	return (
 		<Script
+			aria-label="Script para carregar o plugin de analitica"
 			src={"/plugins/pluginAnalytics/index.js"}
 			strategy="afterInteractive"
 			onLoad={() => {
