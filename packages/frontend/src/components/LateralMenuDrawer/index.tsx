@@ -23,7 +23,7 @@ export function LateralMenuDrawer() {
 
 	return (
 		<Drawer.Root direction="right" open={isOpen} onOpenChange={setIsOpen}>
-			<Drawer.Trigger className="lg:hidden">
+			<Drawer.Trigger className="lg:hidden" aria-label="Botão para abrir a gaveta com links">
 				<Menu className="text-brand-primary-main size-6 hover:scale-110 transition-transform" />
 			</Drawer.Trigger>
 			<Drawer.Portal>
