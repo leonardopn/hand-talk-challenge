@@ -52,8 +52,9 @@ export function UserProjects() {
 							className="w-full h-40 rounded-xs object-cover shadow-level1"
 							src={project.photo}
 							alt={`Imagem do projeto ${project.name}`}
-							width={1366}
-							height={768}
+							width={300}
+							height={100}
+							quality={50}
 						/>
 						<section className="text-center">
 							<h3 className="font-bold text-sm">{project.name}</h3>
