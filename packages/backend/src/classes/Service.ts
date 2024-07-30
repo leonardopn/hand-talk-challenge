@@ -1,7 +1,7 @@
 import { FirebaseDatabase } from "../implementations/FirebaseDatabase";
 import { INoSqlDatabase } from "../interfaces/INoSqlDatabase";
 
-export class Service {
+export abstract class Service {
 	protected collection: string;
 	protected noSqlDb: INoSqlDatabase;
 
