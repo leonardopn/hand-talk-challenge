@@ -77,7 +77,7 @@ Cada projeto pode ser executado separadamente também, basta executar `yarn star
 
 ## Testando o Aplicativo
 
-A aplicação utiliza a biblioteca jest para realizar os testes. Da mesma forma que o comando apra iniciar todos os pacotes juntos, para executar todos os testes da aplicação, basta rodar `yarn test` na pasta principal do monorepo.
+A aplicação utiliza a biblioteca jest para realizar os testes. Da mesma forma que o comando para iniciar todos os pacotes juntos, para executar todos os testes da aplicação, basta rodar `yarn test` na pasta principal do monorepo.
 
 ## Criador
 
