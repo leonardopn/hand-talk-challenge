@@ -69,11 +69,11 @@ Após ter feito toda a configuração geral, cada projeto vai necessitar de algu
 
 ## Rodando o projeto
 
-Agora que todos os preparativos foram feitos, você pode rodar o projeto pelo terminal. Para isso, basta estar na pasta principal do monorepo e usar o comando `yarn start` no terminal.
+Agora que todos os preparativos foram feitos, você pode rodar o projeto pelo terminal. Para isso, basta estar na pasta principal do monorepo e usar o comando `yarn start:dev` no terminal.
 
 O monorepo já está configurado para que todos os 3 pacotes rodem em sincronia e fiquem observando a mudanças nos arquivos para realizar o "fast refresh" do projeto.
 
-Cada projeto pode ser executado separadamente também, basta executar `yarn start` na pasta principal de cada pacote.
+Cada projeto pode ser executado separadamente também, basta executar `yarn start:dev` na pasta principal de cada pacote.
 
 ## Testando o Aplicativo
 
