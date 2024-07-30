@@ -1,7 +1,7 @@
 import Toastify from "toastify-js";
-import { SendAnalyticDataButton } from "../components/SendAnalyticDataButton";
-import { ApiService } from "../service/api";
-import { AnalyticsCollector } from "./AnalyticsCollector";
+import { SendAnalyticDataButton } from "../../components/SendAnalyticDataButton";
+import { ApiService } from "../../service/api";
+import { AnalyticsCollector } from "../AnalyticsCollector";
 
 export class AnalyticsPlugin {
 	private static token: string;
