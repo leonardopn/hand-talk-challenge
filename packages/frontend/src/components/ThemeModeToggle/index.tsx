@@ -1,3 +1,5 @@
+"use client";
+
 import { useThemeChangeCounterContext } from "@/contexts/ThemeChangeCounterContext";
 import { LoaderCircle, Moon, Sun, SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
