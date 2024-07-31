@@ -16,6 +16,7 @@
 		"Web: ThemeModeToggle",
 		"Web: GoToTopButton",
 		"Web: ThemeChangeCounterContext",
-		"Web: LateralMenuDrawer"
+		"Web: LateralMenuDrawer",
+		"Web: PostCard"
 	]
 }
