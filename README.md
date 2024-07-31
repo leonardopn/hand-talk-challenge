@@ -75,6 +75,14 @@ O monorepo já está configurado para que todos os 3 pacotes rodem em sincronia 
 
 Cada projeto pode ser executado separadamente também, basta executar `yarn start:dev` na pasta principal de cada pacote.
 
+Independente do método escolhido, se os arquivos .env foram usados corretamente, o projeto vai rodar em:
+
+FRONTEND: <http://localhost:3000>
+
+BACKEND: <http://localhost:4000>
+
+SWAGGER: <http://localhost:4000/api-docs>
+
 ## Testando o Aplicativo
 
 A aplicação utiliza a biblioteca jest para realizar os testes. Da mesma forma que o comando para iniciar todos os pacotes juntos, para executar todos os testes da aplicação, basta rodar `yarn test` na pasta principal do monorepo.
