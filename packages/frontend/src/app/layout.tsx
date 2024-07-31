@@ -22,6 +22,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR" suppressHydrationWarning>
+			<head>
+				<meta name="next-size-adjust" content="100%" />
+			</head>
 			<body
 				className={twMerge(
 					lato.className,
