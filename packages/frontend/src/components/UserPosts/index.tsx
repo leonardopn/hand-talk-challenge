@@ -48,18 +48,18 @@ export function UserPosts({ className }: UserPostsProps) {
 			{posts.map(post => {
 				return <PostCard post={post} key={post.id} />;
 			})}
-			<a
-				href="https://www.leonardopetta.dev/blog"
-				target="_blank"
-				rel="noreferrer"
-				className="w-full">
-				<Button
-					colorScheme="purple"
-					aria-label="Ver todos as postagens"
-					className="items-center justify-center flex gap-2 w-full">
-					Ver todas as postagens <ExternalLink className="inline size-5" />
-				</Button>
-			</a>
+
+			<Button
+				linkProps={{
+					href: "https://www.leonardopetta.dev/blog",
+					target: "_blank",
+					rel: "noreferrer",
+				}}
+				colorScheme="purple"
+				aria-label="Ver todos as postagens"
+				className="items-center justify-center flex gap-2 w-full">
+				Ver todas as postagens <ExternalLink className="inline size-5" />
+			</Button>
 		</Card>
 	);
 }

@@ -1,8 +1,9 @@
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
 const buttonVariant = tv({
-	base: "py-nano px-xxxs font-semiBold rounded-xs transition-colors focus:outline-none focus:ring-2 text-neutral-high-lightest",
+	base: "py-nano px-xxxs font-semiBold rounded-xs transition-colors focus:outline-none focus:ring-2 text-neutral-high-lightest no-underline",
 	variants: {
 		color: {
 			primary:
@@ -15,9 +16,20 @@ const buttonVariant = tv({
 interface ButtonProps extends React.ComponentProps<"button"> {
 	"aria-label": string;
 	colorScheme?: keyof (typeof buttonVariant)["variants"]["color"];
+	linkProps?: React.ComponentProps<typeof Link>;
 }
 
-export function Button({ children, colorScheme = "primary", ...props }: ButtonProps) {
+export function Button({ children, linkProps, colorScheme = "primary", ...props }: ButtonProps) {
+	if (linkProps) {
+		return (
+			<Link
+				{...linkProps}
+				className={twMerge(buttonVariant({ color: colorScheme }), props.className)}>
+				{children}
+			</Link>
+		);
+	}
+
 	return (
 		<button
 			{...props}

@@ -19,7 +19,7 @@ describe("UserProfile Component", () => {
 
 	test("should render 'Entre em contato' button with correct link", () => {
 		render(<UserProfile />);
-		const button = screen.getByRole("button", { name: /Entre em contato/i });
+		const button = screen.getByText(/Entre em contato/i);
 		expect(button).toBeInTheDocument();
 		expect(button.closest("a")).toHaveAttribute("href", "https://github.com/leonardopn");
 	});

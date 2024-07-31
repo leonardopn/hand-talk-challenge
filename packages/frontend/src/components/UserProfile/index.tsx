@@ -1,9 +1,9 @@
+import { routePaths } from "@/constant/RoutePaths";
 import * as Avatar from "@radix-ui/react-avatar";
 import { Rss } from "lucide-react";
+import { twMerge } from "tailwind-merge";
 import { Button } from "../Button";
 import { Card } from "../Card";
-import { twMerge } from "tailwind-merge";
-import { routePaths } from "@/constant/RoutePaths";
 
 interface UserProfileProps {
 	className?: string;
@@ -24,18 +24,18 @@ export function UserProfile({ className }: UserProfileProps) {
 			<h1 className="font-extraBold text-md max-w-72 text-center">
 				Leonardo Petta do Nascimento
 			</h1>
-			<a
-				href="https://github.com/leonardopn"
-				target="_blank"
-				rel="noreferrer"
-				className="w-full">
-				<Button
-					aria-label="Entre em contato"
-					className="w-full flex items-center justify-center gap-2"
-					colorScheme="purple">
-					Entre em contato <Rss className="inline size-5" />
-				</Button>
-			</a>
+
+			<Button
+				linkProps={{
+					href: "https://github.com/leonardopn",
+					target: "_blank",
+					rel: "noreferrer",
+				}}
+				aria-label="Entre em contato"
+				className="w-full flex items-center justify-center gap-2"
+				colorScheme="purple">
+				Entre em contato <Rss className="inline size-5" />
+			</Button>
 		</Card>
 	);
 }

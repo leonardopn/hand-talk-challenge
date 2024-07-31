@@ -70,28 +70,31 @@ export function UserProjects({ className }: UserProjectsProps) {
 							</p>
 						</section>
 
-						<a href={project.link} target="_blank" rel="noreferrer">
-							<Button
-								aria-label="Ver mais"
-								className="items-center justify-center flex gap-2 w-full">
-								Ver mais <ExternalLink className="inline size-5" />
-							</Button>
-						</a>
+						<Button
+							linkProps={{
+								href: project.link,
+								target: "_blank",
+								rel: "noreferrer",
+							}}
+							aria-label="Ver mais"
+							className="items-center justify-center flex gap-2 w-full">
+							Ver mais <ExternalLink className="inline size-5" />
+						</Button>
 					</div>
 				);
 			})}
-			<a
-				href="https://www.leonardopetta.dev/projects"
-				target="_blank"
-				rel="noreferrer"
-				className="w-full">
-				<Button
-					colorScheme="purple"
-					aria-label="Ver todos os projetos"
-					className="items-center justify-center flex gap-2 w-full">
-					Ver todos os projetos <ExternalLink className="inline size-5" />
-				</Button>
-			</a>
+
+			<Button
+				linkProps={{
+					href: "https://www.leonardopetta.dev/projects",
+					target: "_blank",
+					rel: "noreferrer",
+				}}
+				colorScheme="purple"
+				aria-label="Ver todos os projetos"
+				className="items-center justify-center flex gap-2 w-full">
+				Ver todos os projetos <ExternalLink className="inline size-5" />
+			</Button>
 		</Card>
 	);
 }

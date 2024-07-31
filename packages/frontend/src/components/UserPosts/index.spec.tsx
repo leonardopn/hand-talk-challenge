@@ -35,7 +35,7 @@ describe("UserPosts Component", () => {
 
 	test("should render 'Ver todas as postagens' button with correct link", () => {
 		render(<UserPosts />);
-		const button = screen.getByLabelText("Ver todos as postagens");
+		const button = screen.getByText(/Ver todas as postagens/i);
 		expect(button).toBeInTheDocument();
 		expect(button.closest("a")).toHaveAttribute("href", "https://www.leonardopetta.dev/blog");
 	});
