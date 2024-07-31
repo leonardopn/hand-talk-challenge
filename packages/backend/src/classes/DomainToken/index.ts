@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { IDefaultDocument } from "../interfaces/IDefaultDocument";
+import { IDefaultDocument } from "../../interfaces/IDefaultDocument";
 
 export class DomainToken implements IDefaultDocument {
 	id: string;
